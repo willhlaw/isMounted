@@ -25,9 +25,9 @@ const MySecureComponent = () => {
 
   useEffect(() => {
     myService.getResults().then(val => {
-      if (isMounted.current) {
+      if (isMounted.current === true) {
         setResults(val);
-      } else if (isMounted.isLongDelay()) { 
+      } else if (isMounted.current.isLongDelay()) { 
         console.warn('Trying to set state long after mounting. Could be a memory leak.');  
        }
     });
