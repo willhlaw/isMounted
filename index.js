@@ -4,7 +4,12 @@ const useIsMounted = () => {
   const isMounted = useRef(false);
   useEffect(() => {
     isMounted.current = true;
-    return () => isMounted.current = false;
+    isMounted.isLongDelay = () => false;
+    return () => {
+      isMounted.current = false;
+      isMounted.unMountedTimestamp = date.now();
+      isMounted.isLongDelay = (delayInMs = 3000) => isMounted.unMountedTimestamp - date.now() > delayInMs;
+    }
   }, []);
   return isMounted;
 };
