@@ -7,8 +7,8 @@ const useIsMounted = () => {
     isMounted.isLongDelay = () => false;
     return () => {
       isMounted.current = false;
-      isMounted.unMountedTimestamp = date.now();
-      isMounted.isLongDelay = (delayInMs = 3000) => isMounted.unMountedTimestamp - date.now() > delayInMs;
+      isMounted.unMountedTimestamp = Date.now();
+      isMounted.isLongDelay = (delayInMs = 3000) => isMounted.unMountedTimestamp - Date.now() > delayInMs;
     }
   }, []);
   return isMounted;
