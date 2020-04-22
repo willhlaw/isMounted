@@ -27,7 +27,9 @@ const MySecureComponent = () => {
     myService.getResults().then(val => {
       if (isMounted.current) {
         setResults(val);
-      }
+      } else if (isMounted.isLongDelay()) { 
+        console.warn('Trying to set state long after mounting. Could be a memory leak.');  
+       }
     });
   }, [myService.getResults]);
 
